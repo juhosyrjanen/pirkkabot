@@ -1,6 +1,0 @@
-#!/usr/bin/env python2.7
-
-consumer_key = "cosumerkey"
-consumer_secret = "comsumersecret"
-access_token = "accestoken"
-access_secret = "accessecret"
