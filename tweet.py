@@ -1,7 +1,7 @@
 #!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 import tweepy
-from secrets import *
+from secret import *
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 
