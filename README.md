@@ -1,10 +1,10 @@
 # pirkkabot
 Posting the price of Pirkka III-beer daily
 
-Installing:
+-- Installing --
 
-> pip install tweepy
- needs lxml for python
+pip install tweepy
+needs lxml for python
 
 -- How it works -- 
 
