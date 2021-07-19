@@ -1,25 +1,5 @@
-# pirkkabot
-Posting the price of Pirkka III-beer daily
+# pirkkabot 2.0
 
--- Installing --
+Pirkkabot innocently scans K-Ruoka webstore for Pirkka III -beer's price daily. 
 
-pip install tweepy
-
-needs lxml for python
-
--- How it works -- 
-
-Fetch HTML-page from K-market webstore
-
-Parse data for beer price tag
-
-Turn parsed data into array
-
-Use array[0] as variable 
-
-Tweet string + variable
-
-Scheduled cron jobs will trigger scripts daily
-
-Not usefull at all, very simple
-
+To avoid getting caught on K-Ruoka bot blocker, pirkkabot is now containerized. 
