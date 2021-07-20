@@ -25,3 +25,7 @@ options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2)
 ```
 
 Depending on the bot filter used, UA like this might be enough to circumvent the filter. Seems like requests coming from known datacenter IPs are more likely to get blocked, so UA DB might be needed eventually.
+
+## Kippis Watch
+
+Pirkkabot will now cheer you on as you enjoy a fresh and tasty Pirkka III -beer! Any tweets containing the words ``kippis`` or ``Kippis`` will be answered with a happy toast to our favorite beer! :D
