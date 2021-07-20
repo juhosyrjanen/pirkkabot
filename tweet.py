@@ -1,24 +1,13 @@
-#!/usr/bin/python3.6
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 
-import json
-from lxml import html
-import requests
 from datetime import date
 import tweepy
 from secrets import *
 
-f= open("price.txt","w+")
-
-page = requests.get('https://www.k-ruoka.fi/kauppa/tuote/pirkka-iii-olut-033l-45-tlk-si-6410405091260')
-tree = html.fromstring(page.content)
-
-#parse price
-jsonld = tree.xpath('//script[@id="product-json-ld"]/text()')[0]
-data = json.loads(jsonld)
-
-#set price
-price = data[0]['offers']['price']
-price = price.replace('.', ',')
+#get today's pirkka price
+with open('price_today', 'r') as file:
+    price = file.read().replace('\n', '')
 
 #date formating
 date_today = date.today()
@@ -32,4 +21,4 @@ api = tweepy.API(auth)
 #compose tweet and shoot
 tweet = "Pirkka III-oluen hinta tänään"+ date_formated +"on " + price + "€."
 print(tweet)
-api.update_status(status=tweet)
+#api.update_status(status=tweet)
