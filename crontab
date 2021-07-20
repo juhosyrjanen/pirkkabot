@@ -1,3 +1,0 @@
-# add these to crontab
-0 8 * * * /usr/bin/python /location/pirkkabot/parser.py
-0 9 * * * /usr/bin/python /location/pirkkabot/tweet.py
