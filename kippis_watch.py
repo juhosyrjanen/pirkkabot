@@ -20,7 +20,7 @@ t = ['kippis!',
     'Kippis!!!',
     'hölkynkölkyn!']
 
-for s in twt:
+for s in twts:
     for i in t:
         if i == s.text:
             sn = s.user.screen_name
