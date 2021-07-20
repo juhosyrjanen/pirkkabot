@@ -3,7 +3,7 @@
 
 import tweepy
 import logging
-from config import create_api
+import config 
 import time
 from secrets import *
 
@@ -19,12 +19,12 @@ def check_mentions(api, keywords, since_id):
         if tweet.in_reply_to_status_id is not None:
             continue
         if any(keyword in tweet.text.lower() for keyword in keywords):
-            logger.info(f"Answering to {tweet.user.name}")
+            logger.info(f"Answering to {tweet.user.name} - Twitter handle is {tweet.user.screen_name}")
 
-            api.update_status(
-                status="@{tweet.user.name} Kippis!",
-                in_reply_to_status_id=tweet.id,
-            )
+            #api.update_status(
+            #    status="@{tweet.user.name} Kippis!",
+            #    in_reply_to_status_id=tweet.id,
+            #)
     return new_since_id
 
 def main():
