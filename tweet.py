@@ -21,4 +21,4 @@ api = tweepy.API(auth)
 #compose tweet and shoot
 tweet = "Pirkka III-oluen hinta tänään"+ date_formated +"on " + price + "€."
 print(tweet)
-#api.update_status(status=tweet)
+api.update_status(status=tweet)
