@@ -24,5 +24,5 @@ for s in twts:
     for i in t:
         if i == s.text:
             sn = s.user.screen_name
-            m = "Kippis @%s !" % (sn)
+            m = "@%s Kippis!" % (sn)
             s = api.update_status(m, s.id)
