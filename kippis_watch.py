@@ -4,8 +4,8 @@
 import tweepy
 from secrets import *
 
-auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_secret)
 api = tweepy.API(auth)
 
 twts = api.search(q="Kippis!")
