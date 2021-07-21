@@ -2,7 +2,7 @@
 
 Pirkkabot innocently scans K-Ruoka webstore for Pirkka III -beer's price daily (Kesko pls don't block, 1 page load per day only!).
 
-To avoid getting caught on K-Ruoka bot blocker, pirkkabot is now containerized and mimics human user with Chrome engine. 
+To avoid getting caught on K-Ruoka bot blocker (AKA Cloudflare), pirkkabot is now containerized and mimics human user with Chrome engine. 
 
 ## Technologies used
 
