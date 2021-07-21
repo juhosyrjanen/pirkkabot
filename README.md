@@ -26,6 +26,16 @@ options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2)
 
 Depending on the bot filter used, UA like this might be enough to circumvent the filter. Seems like requests coming from known datacenter IPs are more likely to get blocked, so UA DB might be needed eventually.
 
+## Dockerfile
+
+Docker image is based on ``python:3.7`` base image. It does not do much else than install Google Chrome and ``chromedriver`` which are used as a base for the webscraper. ``pip``installs necessary Python-modules to support the parser. 
+
+The container is only booted up once per day. ``parser.py``is ran inside the container and its ``stdout`` is saved to a local file. 
+
+```bash 
+docker run -it parser python3 ./parser.py > price_today
+```
+
 ## Kippis Watch
 
 Pirkkabot will now cheer you on as you enjoy a fresh and tasty Pirkka III -beer! Any tweets containing the words ``kippis`` or ``Kippis`` will be answered with a happy toast to our favorite beer! :D
