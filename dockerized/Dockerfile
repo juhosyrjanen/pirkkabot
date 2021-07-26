@@ -1,3 +1,7 @@
+## TODO
+# to reduce container size multistage build should be enabled
+# atm runs on root user, which does not really matter as the container is not running all the time, but using restricted user would improve security
+
 FROM python:3.7
 
 # install system dependencies
