@@ -1,6 +1,5 @@
 ## TODO
 # to reduce container size multistage build should be enabled
-# atm runs on root user, which does not really matter as the container is not running all the time, but using restricted user would improve security
 
 FROM python:3.7
 
@@ -23,6 +22,9 @@ RUN pip install --no-cache-dir --upgrade pip
 
 #Set workdir, copy kamppeet
 WORKDIR /app
-COPY ./requirements.txt /app/requirements.txt
-RUN pip3 install --no-cache-dir -r requirements.txt
 COPY . .
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+RUN useradd -ms /bin/bash pirkkabot && chown -R pirkkabot:pirkkabot /app && chmod +x /app/parser.py
+USER pirkkabot
+ENTRYPOINT [ "./parser.py" ]

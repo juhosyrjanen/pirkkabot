@@ -32,7 +32,7 @@ Docker image is based on ``python:3.7`` base image. It does not do much else tha
 The container is only booted up once per day. ``parser.py``is ran inside the container and its ``stdout`` is saved to a local file. 
 
 ```bash 
-docker run -it parser python3 ./parser.py > price_today
+docker run parser python3 ./parser.py > price_today
 ```
 
 ## Kippis Watch
