@@ -34,7 +34,3 @@ The container is only booted up once per day. ``parser.py``is ran inside the con
 ```bash 
 docker run parser python3 ./parser.py > price_today
 ```
-
-## Kippis Watch
-
-Pirkkabot will now cheer you on as you enjoy a fresh and tasty Pirkka III -beer! Any tweets containing the words ``kippis`` or ``Kippis`` will be answered with a happy toast to our favorite beer! :D

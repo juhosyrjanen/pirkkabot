@@ -26,4 +26,4 @@ RUN useradd pirkkabot -ms /bin/bash && chown -R pirkkabot:pirkkabot /app && chmo
 USER pirkkabot
 
 RUN pip3 install --no-cache-dir -r requirements.txt
-ENTRYPOINT [ "./parser.py" ]
+ENTRYPOINT python3 parser.py
