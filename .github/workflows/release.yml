@@ -14,6 +14,6 @@ jobs:
         uses: cycjimmy/semantic-release-action@v3
         with:
           semantic_version: 16
-          branch: main
+          branch: master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
