@@ -4,6 +4,8 @@
 from datetime import date
 import tweepy
 from secrets import *
+import sqlite3
+from sqlite3 import Error
 
 #get today's pirkka price
 with open('price_today', 'r') as file:
@@ -22,3 +24,33 @@ api = tweepy.API(auth)
 tweet = "Pirkka III-oluen hinta tänään"+ date_formated +"on " + price + "€."
 print(tweet)
 api.update_status(status=tweet)
+
+## Database section ##
+
+try:
+    # Connect to DB and create a cursor
+    sqliteConnection = sqlite3.connect('pirkka_price.db')
+    cursor = sqliteConnection.cursor()
+    print('DB Init')
+
+    ## Create Pirkka Price table
+    pirkka_table = """ CREATE TABLE IF NOT EXISTS PIRKKA_PRICE (
+                PRICE FLOAT,
+                TIMESTAMP TEXT
+            ); """
+
+    cursor.execute(pirkka_table)
+    cursor.execute(f"INSERT INTO PIRKKA_PRICE (PRICE, TIMESTAMP) VALUES ({price}, datetime('now'))")
+    sqliteConnection.commit()
+    cursor.close()
+
+# Handle errors
+except sqlite3.Error as error:
+    print('Error occured - ', error)
+
+# Close the connection
+finally:
+
+    if sqliteConnection:
+        sqliteConnection.close()
+        print('SQLite Connection closed')
