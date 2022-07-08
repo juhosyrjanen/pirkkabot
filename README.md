@@ -1,5 +1,5 @@
-# pirkkabot 2.0
-> Web scraper that avoids getting caught by Cloudflare.
+# pirkkabot
+> Web scraper that avoids getting caught by Cloudflare. For now.
 
 Pirkkabot innocently scans K-Ruoka webstore for Pirkka III -beer's price daily (Kesko pls don't block, 1 page load per day only!) To avoid getting caught on K-Ruoka bot blocker (AKA Cloudflare), pirkkabot is now containerized and mimics human user with Chrome engine. 
 
@@ -9,6 +9,7 @@ Pirkkabot innocently scans K-Ruoka webstore for Pirkka III -beer's price daily (
 - Python
 - Selenium WebDriver
 - Tweepy
+- SQLite3
 
 ## Chrome engine
 
@@ -32,5 +33,10 @@ Docker image is based on ``python:3.7`` base image. It does not do much else tha
 The container is only booted up once per day. ``parser.py`` is ran inside the container as ``pirkkabot`` user and its ``stdout`` is saved to a local file. 
 
 ```bash 
-docker run parser python3 ./parser.py > price_today
+docker run parser > price_today
 ```
+
+### PirkkaDB
+
+As of v1.0.1 Pirkka III-Olut daily price is saved to an SQLite database. 
+Database backups are handled at server backend to off-site NAS server.
