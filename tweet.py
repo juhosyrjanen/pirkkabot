@@ -11,7 +11,10 @@ from sqlite3 import Error
 with open('price_today') as price_raw:
     price = price_raw.readline().replace('\n', '').replace(',','.')
     price_float = float(price)
-    
+
+with open('price_today') as price_raw:
+    price_totweet = price_raw.readline().replace('\n', '')
+
 #date formating
 date_today = date.today()
 date_formated = date_today.strftime(' %d.%m.%Y ')
@@ -20,9 +23,8 @@ date_formated = date_today.strftime(' %d.%m.%Y ')
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
 api = tweepy.API(auth)
-
 #compose tweet and shoot
-tweet = "Pirkka III-oluen hinta tänään"+ date_formated +"on " + price + "€."
+tweet = "Pirkka III-oluen hinta tänään"+ date_formated +"on " + price_totweet + "€."
 print(tweet)
 api.update_status(status=tweet)
 
