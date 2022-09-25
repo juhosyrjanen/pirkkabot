@@ -1,3 +1,4 @@
 pirkka_price.db
 secrets.py
 .idea
+./db/*
