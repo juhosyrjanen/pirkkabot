@@ -32,7 +32,7 @@ api.update_status(status=tweet)
 
 try:
     # Connect to DB and create a cursor
-    sqliteConnection = sqlite3.connect('pirkka_price.db')
+    sqliteConnection = sqlite3.connect('db/pirkka_price.db')
     cursor = sqliteConnection.cursor()
     print('DB Init')
 
