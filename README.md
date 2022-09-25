@@ -18,7 +18,7 @@ Docker image is based on ``python:3.7`` base image.
 
 # Run Pirkkabot
 
-To run Pirkkabot, populate secrets and run:
+To run Pirkkabot, populate secrets, mount DB and run:
 
 ```bash
 docker run --mount type=bind,source="$(pwd)"/db,target=/app/db pirkkabot
