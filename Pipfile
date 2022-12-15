@@ -7,8 +7,4 @@ name = "pypi"
 datetime = "*"
 tweepy = "*"
 flask-restplus = "*"
-
-[dev-packages]
-
-[requires]
-python_version = "3.10"
+selenium = "*"
