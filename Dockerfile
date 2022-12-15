@@ -1,11 +1,12 @@
-FROM python:3.7
+FROM python:3.10-slim
+
+RUN pip3 install tweepy datetime selenium
 
 WORKDIR /app
 COPY . .
 
-RUN useradd pirkkabot -ms /bin/bash && chown -R pirkkabot:pirkkabot /app && chmod +x /app/*.py && chmod +x /app/pirkkabot.sh
+RUN useradd pirkkabot -ms /bin/bash && chown -R pirkkabot:pirkkabot /app && chmod +x /app/*.py 
 USER pirkkabot
 RUN mkdir -p /app/db
 
-RUN pip3 install --no-cache-dir tweepy
-ENTRYPOINT ./pirkkabot.sh 
+CMD python3 tweet.py

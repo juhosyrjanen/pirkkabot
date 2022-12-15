@@ -50,14 +50,11 @@ print(tweet)
 # Catch error if Tweet is unsuccessful
 try:
    print("tweet")
-   api.update_status(status=tweet)
+   #api.update_status(status=tweet)
 except:
     print('Tweet not sent')
     driver.quit()
     exit()
-
-# Close the driver
-driver.quit()
 
 ## Database section ##
 try:
