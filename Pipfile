@@ -6,5 +6,4 @@ name = "pypi"
 [packages]
 datetime = "*"
 tweepy = "*"
-flask-restplus = "*"
-selenium = "*"
+beautifulsoup4 = "*"

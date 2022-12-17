@@ -1,35 +1,40 @@
-#!/usr/bin/python
+#v!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+import requests
 from datetime import date
+import logging
 import tweepy
 from secrets import *
 import sqlite3
 from sqlite3 import Error
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+from bs4 import BeautifulSoup
 
-# WebDriver options, headless, window size, user agent
-# Make sure to update user agent regurarly
-options = webdriver.ChromeOptions()
-options.headless = True
-options.add_argument("window-size=1920x1080")
-options.add_argument('--no-sandbox')
-options.add_argument('--disable-gpu')
-options.add_argument("--headless")
-options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36")
+try:
+    # Your code snippet goes here
+    response = requests.get(
+      url='https://proxy.scrapeops.io/v1/',
+      params={
+          'api_key': (api_key)',
+          'url': 'https://www.k-ruoka.fi/kauppa/tuote/pirkka-iii-olut-033l-45-tlk-si-6410405091260', 
+          'render_js': 'true', 
+          'residential': 'true', 
+          'country': 'fi', 
+      },
+    )
+except Exception as e:
+    logging.exception("An error occurred: %s", e)
 
-# Set up webdriver
-driver = webdriver.Chrome(options=options)
-driver.get('https://www.k-ruoka.fi/kauppa/tuote/pirkka-iii-olut-033l-45-tlk-si-6410405091260')   
+
+soup = BeautifulSoup(response.content, 'html.parser')
 
 # Parse Pirkka III-beer price from page source 
 # Catch error if price is not found
 try:
-    price = driver.find_element(By.CLASS_NAME,'price')
+    price = soup.find('span', class_='price')
+    logging.info('Price found,' + price.text + '€')
 except:
-    print('Price not found')
-    driver.quit()
+    logging.error('Price not found')
     exit()
 
 # Transform price into float   
@@ -45,19 +50,14 @@ auth.set_access_token(access_token, access_secret)
 api = tweepy.API(auth)
 # Compose tweet and shoot
 tweet = "Pirkka III-oluen hinta tänään "+ date_formated +"on " + price.text + "€."
-print(tweet)
 
 # Catch error if Tweet is unsuccessful
 try:
-   print("tweet")
    api.update_status(status=tweet)
+   logging.info('Tweet "' + tweet + '" sent.')
 except:
-    print('Tweet not sent')
-    driver.quit()
+    logging.error('Tweet not sent')
     exit()
-
-# Close the driver
-driver.quit()
 
 ## Database section ##
 try:
