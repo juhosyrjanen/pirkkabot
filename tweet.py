@@ -1,4 +1,4 @@
-#v!/usr/bin/python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 import requests
@@ -15,7 +15,7 @@ try:
     response = requests.get(
       url='https://proxy.scrapeops.io/v1/',
       params={
-          'api_key': (api_key)',
+          'api_key': '(api_key)',
           'url': 'https://www.k-ruoka.fi/kauppa/tuote/pirkka-iii-olut-033l-45-tlk-si-6410405091260', 
           'render_js': 'true', 
           'residential': 'true', 
@@ -34,7 +34,7 @@ try:
     price = soup.find('span', class_='price')
     logging.info('Price found,' + price.text + '€')
 except:
-    logging.error('Price not found')
+    logging.error('Price not found, parser failed.')
     exit()
 
 # Transform price into float   
