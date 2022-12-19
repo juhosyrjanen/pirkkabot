@@ -8,7 +8,7 @@ Pirkkabot innocently scans K-Ruoka webstore for Pirkka III -beer's price daily (
 
 ## Latest Tweets
 
-[![github-readme-twitter](https://vercel.com/juhosyrjanen/pirkkabot-tweets/CWCcwBSSuTsvjmGZzSqPALTZjJxW/api?id=pirkkabot)](https://github.com/gazf/github-readme-twitter)
+[![github-readme-twitter](pirkkabot-tweets-fydpe5l58-juhosyrjanen.vercel.app/api?id=pirkkabot)](https://github.com/gazf/github-readme-twitter)
 
 ## Technologies used
 
