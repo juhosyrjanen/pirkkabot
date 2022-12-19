@@ -1,6 +1,7 @@
 # pirkkabot
-
 > Reporting the important things to the masses
+
+![pirkka-kun](pirkkabot.png)
 
 Pirkkabot innocently scans K-Ruoka webstore for Pirkka III -beer's price daily (Kesko pls don't block, 1 page load per day only!).
 
