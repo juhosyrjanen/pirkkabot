@@ -6,7 +6,7 @@
 
 Pirkkabot innocently scans K-Ruoka webstore for Pirkka III -beer's price daily (Kesko pls don't block, 1 page load per day only!).
 
-## Latest tweets
+## Latest Tweets
 
 [![github-readme-twitter](https://github-readme-twitter.gazf.vercel.app/api?id=pirkkabot)](https://github.com/gazf/github-readme-twitter)
 
