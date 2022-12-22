@@ -10,34 +10,32 @@ import sqlite3
 from sqlite3 import Error
 from bs4 import BeautifulSoup
 
-try:
-    # Your code snippet goes here
+def define_price():
     response = requests.get(
-      url='https://proxy.scrapeops.io/v1/',
-      params={
-          'api_key': '(api_key)',
-          'url': 'https://www.k-ruoka.fi/kauppa/tuote/pirkka-iii-olut-033l-45-tlk-si-6410405091260', 
-          'render_js': 'true', 
-          'residential': 'true', 
-          'country': 'fi', 
-      },
-    )
-except Exception as e:
-    logging.exception("An error occurred: %s", e)
-
-
-soup = BeautifulSoup(response.content, 'html.parser')
-
-# Parse Pirkka III-beer price from page source 
-# Catch error if price is not found
-try:
+          url='https://proxy.scrapeops.io/v1/',
+          params={
+              'api_key': '(api_key)',
+              'url': 'https://www.k-ruoka.fi/kauppa/tuote/pirkka-iii-olut-033l-45-tlk-si-6410405091260', 
+              'render_js': 'true', 
+              'residential': 'true', 
+              'country': 'fi', 
+          },
+        )
+    soup = BeautifulSoup(response.content, 'html.parser')
     price = soup.find('span', class_='price')
-    logging.info('Price found,' + price.text + '€')
-except:
-    logging.error('Price not found, parser failed.')
-    exit()
+    return price
 
-# Transform price into float   
+while True:
+    try:
+        price = define_price()
+        break
+    except NameError:
+        logging.exception("An error occurred: %s", e)
+        pass
+    finally:
+        pass
+
+# Transform price into float for the database 
 price_float = float(price.text.replace(',','.'))
 
 # Get today's date and format it to day month year
