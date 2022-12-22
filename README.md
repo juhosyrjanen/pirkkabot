@@ -4,7 +4,7 @@
 
 ![pirkka-kun](pirkkabot.png)
 
-Pirkkabot innocently scans K-Ruoka webstore for Pirkka III -beer's price daily (Kesko pls don't block, 1 page load per day only!).
+Pirkkabot innocently scans K-Ruoka webstore for Pirkka III -beer's price daily. To combat ever changing CloudFlare and other bot blocking mechanisms used by K-Ruoka, Pirkkabot uses a combination of a managed distrubuted web scraper - [ScrapeOps](https://scrapeops.io/) and BeatuifulSoup to scrape K-Ruoka page contents.
 
 ## Latest Tweets
 
@@ -15,15 +15,16 @@ Pirkkabot innocently scans K-Ruoka webstore for Pirkka III -beer's price daily (
 - Python
 - Tweepy
 - SQLite3
+- BeautifulSoup :)
+- ScrapeOps
 
 # Run Pirkkabot
 
 To run Pirkkabot, populate secrets, run:
 
 ```shell
-cd pirkkabot
-mkdir db && touch db/pirkka_price.db
-python3 ./tweet.py
+pipenv shell
+python3 ./check_price.py
 ```
 
 ### PirkkaDB
