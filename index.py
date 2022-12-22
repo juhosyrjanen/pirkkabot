@@ -1,5 +1,5 @@
 from http.server import BaseHTTPRequestHandler
-from check_price import define_price 
+from check_price import * 
 
 class handler(BaseHTTPRequestHandler):
 
@@ -8,5 +8,5 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Content-type','text/plain')
         self.end_headers()
         price = define_price()
-        self.wfile.write(price.text)
+        self.wfile.write(price)
         return

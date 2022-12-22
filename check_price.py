@@ -34,5 +34,3 @@ while True:
         pass
     finally:
         pass
-
-print(price.text)
