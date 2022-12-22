@@ -4,7 +4,7 @@
 
 ![pirkka-kun](pirkkabot.png)
 
-Pirkkabot innocently scans K-Ruoka webstore for Pirkka III -beer's price daily. To combat ever changing CloudFlare and other bot blocking mechanisms used by K-Ruoka, Pirkkabot uses a combination of a managed distrubuted web scraper - [ScrapeOps](https://scrapeops.io/) and BeatuifulSoup to scrape K-Ruoka page contents.
+Pirkkabot innocently scans K-Ruoka webstore for Pirkka III -beer's price daily. To combat ever changing CloudFlare and other bot blocking mechanisms used by K-Ruoka, Pirkkabot uses a combination of a managed distrubuted web scraper - [ScrapeOps](https://scrapeops.io/) and BeatuifulSoup to scrape and parse K-Ruoka page contents.
 
 ## Latest Tweets
 
