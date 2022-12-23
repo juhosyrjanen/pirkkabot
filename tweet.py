@@ -10,11 +10,18 @@ import sqlite3
 from sqlite3 import Error
 from bs4 import BeautifulSoup
 
+logger = logging.getLogger(__name__)
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+
+# Add the stream handler to the logger
+logger.addHandler(ch)
+
 def define_price():
     response = requests.get(
           url='https://proxy.scrapeops.io/v1/',
           params={
-              'api_key': '(api_key)',
+              'api_key': 'API_KEY',
               'url': 'https://www.k-ruoka.fi/kauppa/tuote/pirkka-iii-olut-033l-45-tlk-si-6410405091260', 
               'render_js': 'true', 
               'residential': 'true', 
@@ -23,20 +30,27 @@ def define_price():
         )
     soup = BeautifulSoup(response.content, 'html.parser')
     price = soup.find('span', class_='price')
-    return price
+    if price is None:
+         raise ValueError('Price is None')
+    else:
+      return price
 
 while True:
     try:
         price = define_price()
         break
     except NameError:
-        logging.exception("An error occurred: %s", e)
+        logger.exception("An error occurred: %s", e)
         pass
     finally:
         pass
 
 # Transform price into float for the database 
-price_float = float(price.text.replace(',','.'))
+try:
+    price_float = float(price.text.replace(',','.'))
+    logger.info('Price converted to float')
+except ValueError:
+    logger.error('Could not convert price to a float')
 
 # Get today's date and format it to day month year
 date_today = date.today()
@@ -52,9 +66,9 @@ tweet = "Pirkka III-oluen hinta tänään "+ date_formated +"on " + price.text +
 # Catch error if Tweet is unsuccessful
 try:
    api.update_status(status=tweet)
-   logging.info('Tweet "' + tweet + '" sent.')
+   logger.info('Tweet "' + tweet + '" sent.')
 except:
-    logging.error('Tweet not sent')
+    logger.error('Tweet not sent')
     exit()
 
 ## Database section ##
@@ -62,7 +76,7 @@ try:
     # Connect to DB and create a cursor
     sqliteConnection = sqlite3.connect('db/pirkka_price.db')
     cursor = sqliteConnection.cursor()
-    print('DB Init')
+    logger.info('DB Init')
 
     ## Create Pirkka Price table
     pirkka_table = """ CREATE TABLE IF NOT EXISTS PIRKKA_PRICE (
@@ -77,11 +91,11 @@ try:
 
 # Handle errors
 except sqlite3.Error as error:
-    print('Error occured - ', error)
+    logger.error('Error occured - ', error)
 
 # Close the connection
 finally:
 
     if sqliteConnection:
         sqliteConnection.close()
-        print('SQLite Connection closed')
+        logger.info('All good, SQLite Connection closed')
