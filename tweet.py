@@ -39,7 +39,10 @@ while True:
     try:
         price = define_price()
         break
-    except NameError:
+    except NameError as e:
+        logger.exception("An error occurred: %s", e)
+        pass
+    except ValueError as e:
         logger.exception("An error occurred: %s", e)
         pass
     finally:
