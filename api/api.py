@@ -1,9 +1,7 @@
 from flask import Flask, jsonify
 from flask_caching import Cache
-import os
-import requests
-from bs4 import BeautifulSoup
 import logging
+import sqlite3
 
 app = Flask(__name__)
 
@@ -17,28 +15,26 @@ logger.addHandler(ch)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
 @cache.memoize(timeout=86400)
-def define_price():
-    response = requests.get(
-          url='https://proxy.scrapeops.io/v1/',
-          params={
-              'api_key': os.environ.get('API_KEY'),
-              'url': 'https://www.k-ruoka.fi/kauppa/tuote/pirkka-iii-olut-033l-45-tlk-si-6410405091260', 
-              'render_js': 'true', 
-              'residential': 'true', 
-              'country': 'fi', 
-          },
-        )
-    soup = BeautifulSoup(response.content, 'html.parser')
-    price = soup.find('span', class_='price')
-    if price is None:
+def get_latest_price():
+    # Connect to the database
+    conn = sqlite3.connect('db/pirkka_price.db')
+    c = conn.cursor()
+    
+    # Get the latest price
+    c.execute("SELECT PRICE FROM PIRKKA_PRICE ORDER BY TIMESTAMP DESC LIMIT 1")
+    latest_price = c.fetchone()[0]
+    
+    # Close the connection
+    conn.close()
+    if latest_price is None:
         raise ValueError('Price is None')
     else:
         logger.info('Price fetched')
-        return price
+        return latest_price
         
 while True:
     try:
-        price = define_price()
+        price = get_latest_price()
         logger.info('Price received from define_price()')
         break
     except NameError as e:
@@ -50,15 +46,9 @@ while True:
     finally:
         pass
 
-try:
-    price_float = float(price.text.replace(',','.'))
-    logger.info('Price converted to float')
-except ValueError:
-    logger.error('Could not convert price to a float')
-
 @app.route('/api/price', methods=['GET'])
 def get_price():
-    return jsonify({'price': price_float})
+    return jsonify({'price': price})
 
 if __name__ == '__main__':
     app.run(debug=True)
