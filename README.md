@@ -40,5 +40,4 @@ If you wish to contribute to Pirkkabot, please create a pull request with a desc
 
 Some things on the to do list are;
 
-- Vercel hosted API that returns price on /api/price GET
 - Drawing graph on the price data
