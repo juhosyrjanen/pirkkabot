@@ -35,7 +35,7 @@ def define_price():
     else:
         logger.info('Price fetched')
         return price
-
+        
 while True:
     try:
         price = define_price()
@@ -62,3 +62,4 @@ def get_price():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
