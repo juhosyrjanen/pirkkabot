@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+# This file is used as a debugging script to test the price scraping function
 
 import requests
 from datetime import date
@@ -19,7 +20,10 @@ def define_price():
         )
     soup = BeautifulSoup(response.content, 'html.parser')
     price = soup.find('span', class_='price')
-    return price
+    if price is None:
+         raise ValueError('Price is None')
+    else:
+      return price
 
 while True:
     try:
