@@ -1,5 +1,4 @@
 from flask import Flask, jsonify
-import sqlite3
 import os
 import requests
 from bs4 import BeautifulSoup
@@ -57,7 +56,7 @@ try:
 except ValueError:
     logger.error('Could not convert price to a float')
 
-@app.route('/price', methods=['GET'])
+@app.route('/api/price', methods=['GET'])
 def get_price():
     return jsonify({'price': price_float})
 

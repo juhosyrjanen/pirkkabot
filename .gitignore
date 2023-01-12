@@ -1,4 +1,5 @@
 pirkka_price.db
-secrets.py
+tweepy_secrets.py
 .idea
 ./db/*
+.vercel
