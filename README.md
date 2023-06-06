@@ -6,9 +6,7 @@
 
 Pirkkabot innocently scans K-Ruoka webstore for Pirkka III -beer's price daily. To combat ever changing CloudFlare and other bot blocking mechanisms used by K-Ruoka, Pirkkabot uses a combination of a managed distrubuted web scraper - [ScrapeOps](https://scrapeops.io/) and BeautifulSoup to scrape and parse K-Ruoka page contents.
 
-## Latest Tweets
-
-[![github-readme-twitter](https://github-readme-twitter.gazf.vercel.app/api?id=pirkkabot&layout=wide)](https://github.com/gazf/github-readme-twitter)
+!! Currently out of order, TwitterAPI1 has been deprecated. TwitterAPI2 requires some OAuth stuff and I'm a bit lazy. API still works! !!
 
 ## Technologies used
 
