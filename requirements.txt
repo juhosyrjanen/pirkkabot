@@ -10,7 +10,7 @@ beautifulsoup4==4.11.1
 boto3==1.26.48
 botocore==1.29.72; python_version >= '3.7'
 cachelib==0.10.2; python_version >= '3.7'
-certifi==2022.12.7; python_version >= '3.6'
+certifi==2023.7.22; python_version >= '3.6'
 charset-normalizer==3.0.1; python_full_version >= '3.6.0'
 click==8.1.3; python_version >= '3.7'
 datetime==4.9
